@@ -32,8 +32,8 @@ ball.color("white")
 ball.shapesize(stretch_wid=1, stretch_len=1)
 ball.penup()
 ball.goto(0, 0)
-ball.dx = .3
-ball.dy = .3
+ball.dx = .2
+ball.dy = .2
 
 #move paddle a up
 def paddle_a_up():
@@ -90,4 +90,13 @@ while True:
 
     if ball.xcor() < -390:
         ball.goto(0,0)
+        ball.dx *= -1
+
+    #paddle and ball collisions
+    if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
+        ball.setx(340)
+        ball.dx *= -1
+
+    if ball.xcor() < -340 and ball.xcor() > -350 and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
+        ball.setx(-340)
         ball.dx *= -1
