@@ -6,6 +6,10 @@ wn.bgcolor("black")
 wn.setup(width = 800, height = 600)
 wn.tracer(0)
 
+#score
+score_a = 0
+score_b = 0
+
 #paddle a
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
@@ -96,10 +100,18 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_a += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align = "center", font = ("Courier", 24, "normal"))
+
 
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_b += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align = "center", font = ("Courier", 24, "normal"))
+
 
     #paddle and ball collisions
     if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
